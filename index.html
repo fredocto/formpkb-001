@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form PKB GPIB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    .back {
+      background: #ccc;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- 🔵 PAGE 1 -->
+  <div id="page1" class="page active">
+    <h2>Form PKB GPIB</h2>
+    <p class="subtitle">
+      Khusus bagi KSB/KP3 yang belum bergabung dalam WAG
+    </p>
+
+    <button onclick="showPage(2)">Mulai</button>
+  </div>
+
+  <!-- 🔵 PAGE 2 -->
+  <div id="page2" class="page">
+    <h2>Pilih MUPEL</h2>
+
+    <select id="mupel">
+      <option value="">Pilih MUPEL</option>
+      <option>01 - MUPEL SULSELBARA</option>
+      <option>02 - MUPEL BALI-NTB</option>
+      <option>12 - MUPEL JAKARTA PUSAT</option>
+      <option>13 - MUPEL JAKARTA UTARA</option>
+      <option>14 - MUPEL JAKARTA SELATAN</option>
+    </select>
+  </div>
+
+  <!-- 🔵 PAGE 3 -->
+<div id="page3" class="page">
+  <h2>Pilih Jemaat</h2>
+  <p id="infoMupel" class="subtitle"></p>
+
+  <select id="jemaat">
+    <option value="">Pilih Jemaat</option>
+  </select>
+
+  <button class="back" onclick="showPage(2)">Back</button>
+</div>
+
+<div id="page4" class="page">
+  
+  <h2>Data Diri Pengurus</h2>
+
+<p class="subtitle" id="infoJemaat"></p>
+<p class="subtitle" id="infoMupel2"></p>
+
+  <div class="field">
+    <label>Nama Lengkap</label>
+    <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+  </div>
+
+  <div class="field">
+    <label>Nomor WhatsApp</label>
+    <input type="tel" id="wa" placeholder="08xxxxxxxxxx">
+  </div>
+
+  <div class="field">
+    <label>Jabatan</label>
+    <select id="jabatan">
+      <option value="">Pilih Jabatan</option>
+      <option>Ketua</option>
+      <option>Wakil Ketua</option>
+      <option>Sekretaris</option>
+      <option>Wakil Sekretaris</option>
+      <option>Bendahara</option>
+      <option>Wakil Bendahara</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>Peran MUPEL</label>
+    <select id="peran">
+      <option value="">Tidak Ada</option>
+      <option>KP3/KORWIL</option>
+      <option>Wakil KP3/KORWIL</option>
+      <option>Sekretaris</option>
+      <option>Bendahara</option>
+    </select>
+  </div>
+
+  <button class="back" onclick="showPage(3)">Back</button>
+  <button onclick="submitData()">Next</button>
+</div>
+
+  <div id="page5" class="page">
+  <h2>Konfirmasi Data</h2>
+
+  <div class="subtitle">Periksa kembali sebelum melanjutkan</div>
+
+  <div id="reviewBox" style="text-align:left; font-size:14px; line-height:1.6;"></div>
+
+  <button class="back" onclick="showPage(4)">Back</button>
+  <button onclick="submitFinal()">Submit</button>
+</div>
+
+<div id="page6" class="page">
+  <h2>Terima Kasih 🙏</h2>
+
+  <p class="subtitle">
+    Data Anda telah berhasil dikirim.<br>
+    Silakan bergabung ke WAG resmi PKB GPIB.
+  </p>
+
+  <button onclick="joinWA()" style="font-size:18px; padding:16px;">
+    JOIN WAG SEKARANG
+  </button>
+</div>
+  
+<script>
+
+// 🔥 DATA SEDERHANA DULU (TEST)
+const dataJemaat = {
+  "01 - MUPEL SULSELBARA": ["BETHANIA Makassar", "IMMANUEL Makassar"],
+  "12 - MUPEL JAKARTA PUSAT": ["ANUGERAH Jakarta Pusat", "PAULUS Jakarta Pusat"]
+};
+
+// 🔥 NAVIGATION
+function showPage(pageNumber) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById("page" + pageNumber).classList.add("active");
+
+  // 🔵 PAGE 3
+  if (pageNumber === 3) {
+    const mupel = localStorage.getItem("mupel");
+
+    if (mupel) {
+      let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+      document.getElementById("infoMupel").textContent = namaMupel;
+    }
+  }
+
+  // 🔵 PAGE 4
+  if (pageNumber === 4) {
+    const mupel = localStorage.getItem("mupel");
+    const jemaat = localStorage.getItem("jemaat");
+
+    if (mupel) {
+      let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+      document.getElementById("infoMupel2").textContent =
+        "MUPEL " + namaMupel;
+    }
+
+    if (jemaat) {
+      document.getElementById("infoJemaat").textContent =
+        "PKB GPIB " + jemaat;
+    }
+  }
+
+  // 🔥 PAGE 5 (INI DIPISAH)
+  if (pageNumber === 5) {
+  const mupel = localStorage.getItem("mupel") || "-";
+  const jemaat = localStorage.getItem("jemaat") || "-";
+  const nama = localStorage.getItem("nama") || "-";
+  const wa = localStorage.getItem("wa") || "-";
+  const jabatan = localStorage.getItem("jabatan") || "-";
+  const peran = localStorage.getItem("peran") || "-";
+
+  let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+
+  document.getElementById("reviewBox").innerHTML = `
+    <b>
+      Pengurus PKB GPIB ${jemaat}<br>
+      MUPEL ${namaMupel}<br><br>
+
+      Nama: ${nama} (${jabatan})<br>
+      WhatsApp: ${wa}<br><br>
+
+      Peran pada MUPEL: ${peran}
+    </b>
+  `;
+}
+}
+
+  
+// 🔥 AUTO NEXT MUPEL
+document.getElementById("mupel").addEventListener("change", function() {
+  const selected = this.value;
+
+  if (selected) {
+    localStorage.setItem("mupel", selected);
+
+    // isi jemaat
+    const jemaatSelect = document.getElementById("jemaat");
+    jemaatSelect.innerHTML = '<option value="">Pilih Jemaat</option>';
+
+    if (dataJemaat[selected]) {
+      dataJemaat[selected].forEach(j => {
+        const opt = document.createElement("option");
+        opt.value = j;
+        opt.textContent = j;
+        jemaatSelect.appendChild(opt);
+      });
+    }
+
+    let namaMupel = selected.replace(/^\d+\s*-\s*/, "");
+
+document.getElementById("infoMupel").textContent =
+  namaMupel;
+    showPage(3);
+  }
+});
+
+// 🔥 AUTO NEXT JEMAAT
+document.getElementById("jemaat").addEventListener("change", function() {
+  const selected = this.value;
+
+  if (selected) {
+    localStorage.setItem("jemaat", selected);
+
+    showPage(4);
+  }
+});
+
+  function submitData() {
+  const nama = document.getElementById("nama").value.trim();
+  const wa = document.getElementById("wa").value.trim();
+
+  // 🔥 VALIDASI
+  if (!nama) {
+    alert("Nama wajib diisi");
+    return;
+  }
+
+  if (!wa || !/^[0-9]{10,15}$/.test(wa)) {
+    alert("Nomor WhatsApp tidak valid");
+    return;
+  }
+
+    
+  // 🔥 SIMPAN
+  localStorage.setItem("nama", nama);
+  localStorage.setItem("wa", wa);
+  localStorage.setItem("jabatan", document.getElementById("jabatan").value);
+  localStorage.setItem("peran", document.getElementById("peran").value);
+
+  // 🔥 NEXT PAGE (sementara)
+    showPage(5);
+
+}
+function submitFinal() {
+  const formData = new FormData();
+
+  formData.append("mupel", localStorage.getItem("mupel") || "");
+  formData.append("jemaat", localStorage.getItem("jemaat") || "");
+  formData.append("nama", localStorage.getItem("nama") || "");
+  formData.append("wa", localStorage.getItem("wa") || "");
+  formData.append("jabatan", localStorage.getItem("jabatan") || "");
+  formData.append("peran", localStorage.getItem("peran") || "");
+
+fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
+  method: "POST",
+  body: formData,
+  mode: "no-cors"
+})
+.then(() => {
+  showPage(6);
+  localStorage.clear();
+})
+.catch(() => {
+  alert("Gagal kirim data, coba lagi");
+});
+
+}
+function joinWA() {
+  window.open("https://chat.whatsapp.com/FjWaQPY95DFIbWuB4wwmAc", "_blank");
+}
+  
+</script>
+
+  
+</body>
+</html>
