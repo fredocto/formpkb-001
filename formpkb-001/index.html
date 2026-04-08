@@ -23,6 +23,20 @@
       max-width: 400px;
     }
 
+ .logo img {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.95;
+  transition: 0.2s;
+}
+
+.logo img:hover {
+  opacity: 1;
+  transform: scale(1.03);
+}
+    
     .page {
       display: none;
     }
@@ -65,13 +79,23 @@
       background: #ccc;
       color: black;
     }
+    .logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
   </style>
 </head>
 
 <body>
 
 <div class="card">
+<div class="logo">
+  <img src="logo.png" alt="PKB GPIB">
+</div>
 
+  
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
     <h2>Form PKB GPIB</h2>
