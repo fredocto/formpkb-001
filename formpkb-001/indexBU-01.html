@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta property="og:title" content="Form PKB GPIB">
+<meta property="og:description" content="Isi data PKB dan bergabung dalam WAG PKB GPIB Sinodal">
+<meta property="og:image" content="https://pkb.gpib.cloud/og1.png">
+<meta property="og:url" content="https://pkb.gpib.cloud/formpkb-001">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+  
+  <title>Form PKB GPIB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+ .logo img {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.95;
+  transition: 0.2s;
+}
+
+.logo img:hover {
+  opacity: 1;
+  transform: scale(1.03);
+}
+    
+    .page {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    .back {
+      background: #ccc;
+      color: black;
+    }
+    .logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+<div class="logo">
+  <img src="logo.png" alt="PKB GPIB">
+</div>
+
+  
+  <!-- 🔵 PAGE 1 -->
+  <div id="page1" class="page active">
+    <h2>Form PKB GPIB</h2>
+    <p class="subtitle">
+      Khusus bagi KSB/KP3 yang belum bergabung dalam WAG
+    </p>
+
+    <button onclick="showPage(2)">Mulai</button>
+  </div>
+
+  <!-- 🔵 PAGE 2 -->
+  <div id="page2" class="page">
+    <h2>Pilih MUPEL</h2>
+
+    <select id="mupel">
+      <option value="">Pilih MUPEL</option>
+      <option value="02 - MUPEL BALI - NTB">02 - MUPEL BALI - NTB</option>
+<option value="12 - MUPEL JAKARTA PUSAT">12 - MUPEL JAKARTA PUSAT</option>
+      
+    </select>
+  </div>
+
+  <!-- 🔵 PAGE 3 -->
+<div id="page3" class="page">
+  <h2>Pilih Jemaat</h2>
+  <p id="infoMupel" class="subtitle"></p>
+
+  <select id="jemaat">
+    <option value="">Pilih Jemaat</option>
+  </select>
+
+  <button class="back" onclick="showPage(2)">Back</button>
+</div>
+
+<div id="page4" class="page">
+  
+  <h2>Data Diri Pengurus</h2>
+
+<p class="subtitle" id="infoJemaat"></p>
+<p class="subtitle" id="infoMupel2"></p>
+
+  <div class="field">
+    <label>Nama Lengkap</label>
+    <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+  </div>
+
+  <div class="field">
+    <label>Nomor WhatsApp</label>
+    <input type="tel" id="wa" placeholder="08xxxxxxxxxx">
+  </div>
+
+  <div class="field">
+    <label>Jabatan</label>
+    <select id="jabatan">
+      <option value="">Pilih Jabatan</option>
+      <option>Ketua</option>
+      <option>Wakil Ketua</option>
+      <option>Sekretaris</option>
+      <option>Wakil Sekretaris</option>
+      <option>Bendahara</option>
+      <option>Wakil Bendahara</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>Peran MUPEL</label>
+    <select id="peran">
+      <option value="">Tidak Ada</option>
+      <option>KP3/KORWIL</option>
+      <option>Wakil KP3/KORWIL</option>
+      <option>Sekretaris</option>
+      <option>Bendahara</option>
+    </select>
+  </div>
+
+  <button class="back" onclick="showPage(3)">Back</button>
+  <button onclick="submitData()">Next</button>
+</div>
+
+  <div id="page5" class="page">
+  <h2>Konfirmasi Data</h2>
+
+  <div class="subtitle">Periksa kembali sebelum melanjutkan</div>
+
+  <div id="reviewBox" style="text-align:left; font-size:14px; line-height:1.6;"></div>
+
+  <button class="back" onclick="showPage(4)">Back</button>
+  <button onclick="submitFinal()">Submit</button>
+</div>
+
+<div id="page6" class="page">
+  <h2>Terima Kasih 🙏</h2>
+
+  <p class="subtitle">
+    Data Anda telah berhasil dikirim.<br>
+    Silakan bergabung ke WAG resmi PKB GPIB.
+  </p>
+
+  <button onclick="joinWA()" style="font-size:18px; padding:16px;">
+    JOIN WAG SEKARANG
+  </button>
+</div>
+  
+<script>
+
+// 🔥 DATA SEDERHANA DULU (TEST)
+const dataJemaat = {
+  "01 - MUPEL SULSELBARA": [
+    {nama:"BETHANIA",kota:"Makassar"},
+{nama:"BUKIT ZAITUN",kota:"Makassar"},
+{nama:"BAHTERA KASIH",kota:"Makassar"},
+{nama:"IMMANUEL",kota:"Makassar"},
+{nama:"MANGNGAMASEANG",kota:"Makassar"},
+{nama:"PASSAREANG",kota:"Makassar"},
+{nama:"BETHEL",kota:"Raha"},
+{nama:"IMMANUEL BAUBAU",kota:"Baubau"},
+{nama:"IMMANUEL MAJENE",kota:"Kab. Majene"},
+{nama:"IMMANUEL WATAMPONE",kota:"Kab. Bone"},
+{nama:"IMMANUEL PAREPARE",kota:"Parepare"},
+{nama:"PELITA BARAS",kota:"Palu"},
+{nama:"SUMBER KASIH",kota:"Kendari"},
+{nama:"KANA TOJENG",kota:"Gowa"},
+{nama:"SOLA FIDE SARUDU",kota:"Palu"},
+{nama:"SINAR KASIH BARAS",kota:"Pasangkayu"}
+  ],
+ "02 - MUPEL BALI - NTB": [
+{nama:"EBEN HAEZER",kota:"Gianyar"},
+{nama:"EKKLESIA",kota:"Tuban, Kuta"},
+{nama:"MARANATHA",kota:"Denpasar"},
+{nama:"IMMANUEL MATARAM",kota:"Mataram"},
+{nama:"PNIEL SINGARAJA",kota:"Singaraja"},
+{nama:"SYALOM",kota:"Denpasar"},
+{nama:"IMMANUEL BUNG KARNO",kota:"Mataram"},
+{nama:"KASIH KARUNIA",kota:"Denpasar"},
+{nama:"GETSEMANI",kota:"Jimbaran"},
+{nama:"JEMBRANA",kota:"Negara"}
+],
+"03 - KALTIM I": [
+{nama:"BUKIT SION",kota:"Balikpapan"},
+{nama:"IMMANUEL",kota:"Balikpapan"},
+{nama:"MARANATHA",kota:"Balikpapan"},
+{nama:"PNIEL",kota:"Balikpapan"},
+{nama:"SYALOOM",kota:"Balikpapan"},
+{nama:"EBEN HAEZER TANA PASER",kota:"Tana Paser"},
+{nama:"KANAAN",kota:"Kenangan"},
+{nama:"GETSEMANI",kota:"Balikpapan"},
+{nama:"BUKIT BENUAS",kota:"Balikpapan"},
+{nama:"SILOAM",kota:"Long Ikis"},
+{nama:"EFFATHA",kota:"Batu Sopang"},
+{nama:"SION",kota:"Samuntai"},
+{nama:"SYALOOM",kota:"Sepinggan"}
+  ],
+
+  "04 - MUPEL KALTIM II": [
+  {nama:"EBEN HAEZER",kota:"Samarinda"},
+  {nama:"IMMANUEL",kota:"Samarinda"},
+  {nama:"EFATA",kota:"Tenggarong"},
+  {nama:"GLORIA TENGGARONG",kota:"Tenggarong"},
+  {nama:"SUMBER KASIH",kota:"Bontang"},
+  {nama:"SOLA FIDE",kota:"Muara Badak"},
+  {nama:"MARANATHA",kota:"Sanga-Sanga"},
+  {nama:"SOLA GRACIA",kota:"Sebuntal"},
+  {nama:"PELITA KASIH",kota:"Sangatta"},
+  {nama:"ANUGERAH",kota:"Handil"},
+  {nama:"MARTURIA",kota:"Loa Janan"},
+  {nama:"SION JAHAB",kota:"Tenggarong"},
+  {nama:"HEBRON",kota:"Samarinda"},
+  {nama:"TELUK DALAM",kota:"Tenggarong Seberang"}
+],
+
+"05 - MUPEL KALTARA - BERKAT": [
+  {nama:"EFFATHA",kota:"Bunyu"},
+  {nama:"BETLEHEM",kota:"Kuala Lapang"},
+  {nama:"HOSIANA",kota:"Tanjung Redeb"},
+  {nama:"MARANATHA",kota:"Tanjung Selor"},
+  {nama:"SION",kota:"Nunukan"},
+  {nama:"IMMANUEL",kota:"Tarakan"},
+  {nama:"IMMANUEL",kota:"Apau Kayan"},
+  {nama:"UUNG PENGELESAU",kota:"Kab. Malinau"},
+  {nama:"ANUGERAH",kota:"Tarakan"},
+  {nama:"FETEPAY",kota:"Tarakan"},
+  {nama:"SUNGAI SEGAH",kota:"Segah"},
+  {nama:"BETHEL",kota:"Teras Nawang"},
+  {nama:"SION",kota:"Tembudan"}
+],
+
+"06 - MUPEL KALBAR": [
+  {nama:"BETLEHEM",kota:"Sei Ambawang"},
+  {nama:"BETHESDA",kota:"Ketapang"},
+  {nama:"EBENHAEZER",kota:"Ketapang"},
+  {nama:"IMMANUEL",kota:"Singkawang"},
+  {nama:"MARANATHA",kota:"Sanggau"},
+  {nama:"PANITAH",kota:"Anjongan"},
+  {nama:"SILOAM",kota:"Pontianak"},
+  {nama:"SEJAHTERA",kota:"Sanggau"},
+  {nama:"MENARA IMAN",kota:"Sekayam"},
+  {nama:"ORA ET LABORA",kota:"Kembayan"},
+  {nama:"ICHTUS",kota:"Tumbang Titi"},
+  {nama:"SYALOOM",kota:"Sei Kajang"},
+  {nama:"ANUGERAH",kota:"Beduai"},
+  {nama:"PANAMPA",kota:"Anjongan"},
+  {nama:"BUKIT AGAPE",kota:"Entikong"},
+  {nama:"MARGAHAYU",kota:"Rasau Jaya"},
+  {nama:"EKKLESIA",kota:"Air Upas"},
+  {nama:"BALAI BATUAH",kota:"Marau"}
+],
+
+  "07 - MUPEL KALSELTENG": [
+  {nama:"EFFATHA",kota:"Banjarbaru"},
+  {nama:"EBENHAEZER",kota:"Palangka Raya"},
+  {nama:"IMMANUEL",kota:"Kotabaru"},
+  {nama:"MARANATHA",kota:"Banjarmasin"},
+  {nama:"IMMANUEL",kota:"Landasan Ulin"},
+  {nama:"SOLA GRATIA",kota:"Batulicin"}
+],
+
+"08 - MUPEL JABAR I": [
+  {nama:"BETHEL",kota:"Bandung"},
+  {nama:"EFATA",kota:"Batujajar"},
+  {nama:"MARANATHA",kota:"Bandung"},
+  {nama:"SEJAHTERA",kota:"Bandung"},
+  {nama:"SILIH ASIH",kota:"Bandung"},
+  {nama:"PNIEL YUDHA WIYOGRHA",kota:"Dayeuh Kolot"},
+  {nama:"IMMANUEL",kota:"Cimahi"},
+  {nama:"MARANATHA SUBANG",kota:"Subang"},
+  {nama:"GETSEMANI",kota:"Cirebon"},
+  {nama:"SYALOOM",kota:"Cikampek"},
+  {nama:"WISMA ASIH",kota:"Lembang"}
+],
+
+"09 - MUPEL JABAR II": [
+  {nama:"KORNELIUS",kota:"Bogor"},
+  {nama:"NEHEMIA",kota:"Cibogo"},
+  {nama:"PETRA",kota:"Bogor"},
+  {nama:"PENGHARAPAN",kota:"Cibinong"},
+  {nama:"SOLA GRATIA",kota:"Semplak"},
+  {nama:"ZEBAOTH",kota:"Bogor"},
+  {nama:"CIMANGGIS",kota:"Cimanggis"},
+  {nama:"IMMANUEL",kota:"Depok"},
+  {nama:"PANCARAN KASIH",kota:"Depok"},
+  {nama:"PELITA HIDUP",kota:"Depok"},
+  {nama:"PANCORAN RAHMAT",kota:"Depok"},
+  {nama:"SAWANGAN",kota:"Depok"},
+  {nama:"DAMAI SEJAHTERA",kota:"Bogor"},
+  {nama:"SHALOM",kota:"Depok"},
+  {nama:"GIDEON",kota:"Cimanggis"},
+  {nama:"GALILEA",kota:"Pelabuhan Ratu"},
+  {nama:"CINERE",kota:"Depok"},
+  {nama:"KARTIKA SEJAHTERA",kota:"Bogor"},
+  {nama:"TRINITAS",kota:"Cibubur"},
+  {nama:"BOJONGGEDE",kota:"Bogor"},
+  {nama:"BUKIT SENTUL",kota:"Sentul"},
+  {nama:"CIPEUCANG",kota:"Cipeucang"},
+  {nama:"CISEENG",kota:"Ciseeng"},
+  {nama:"PURA",kota:"Tajurhalang"}
+],
+
+"10 - MUPEL JATENG - DIY": [
+  {nama:"EFFATHA",kota:"Semarang"},
+  {nama:"FILADELFIA",kota:"Semarang"},
+  {nama:"IMMANUEL",kota:"Semarang"},
+  {nama:"BETH-EL",kota:"Magelang"},
+  {nama:"MARGA MULYA",kota:"Yogyakarta"},
+  {nama:"TAMAN SARI",kota:"Salatiga"},
+  {nama:"GRIYA MULYA",kota:"Purworejo"},
+  {nama:"PENABUR",kota:"Surakarta"},
+  {nama:"SION",kota:"Semarang"},
+  {nama:"SOLO UTARA",kota:"Mojosongo"},
+  {nama:"AYALON",kota:"Tegal"},
+  {nama:"GALILEA",kota:"Cilacap"},
+  {nama:"AMBARAWA",kota:"Ambarawa"},
+  {nama:"BETLEHEM",kota:"Comal"},
+  {nama:"CUPUWATU",kota:"Cupuwatu"}
+],
+  "11 - MUPEL JATIM": [
+  {nama:"BAHTERA HAYAT",kota:"Surabaya"},
+  {nama:"BUKIT ZAITUN",kota:"Surabaya"},
+  {nama:"BUKIT SION",kota:"Surabaya"},
+  {nama:"BUKIT KASIH",kota:"Surabaya"},
+  {nama:"BUKIT HARAPAN",kota:"Surabaya"},
+  {nama:"BHASKARA",kota:"Surabaya"},
+  {nama:"CAHAYA KASIH",kota:"Surabaya"},
+  {nama:"CAHAYA ANUGERAH",kota:"Surabaya"},
+  {nama:"EBEN HAEZER",kota:"Surabaya"},
+  {nama:"GENTA KASIH",kota:"Surabaya"},
+  {nama:"HOSEA",kota:"Surabaya"},
+  {nama:"IMMANUEL",kota:"Surabaya"},
+  {nama:"MARANATHA",kota:"Surabaya"},
+  {nama:"NAZARETH",kota:"Surabaya"},
+  {nama:"PNIEL",kota:"Surabaya"},
+  {nama:"SINAI",kota:"Surabaya"},
+  {nama:"SEJAHTERA",kota:"Surabaya"},
+  {nama:"GALILEA",kota:"Surabaya"},
+  {nama:"TORSINA",kota:"Surabaya"},
+  {nama:"EFRATA",kota:"Surabaya"},
+  {nama:"AIR HIDUP",kota:"Kamal"},
+  {nama:"PANCARAN KASIH",kota:"Sumenep"},
+  {nama:"BETHESDA",kota:"Sidoarjo"},
+  {nama:"BAHTERA KASIH",kota:"Gresik"},
+  {nama:"MAHKOTA HAYAT",kota:"Pamekasan"},
+  {nama:"SHALOM",kota:"Waru"},
+  {nama:"TIBERIAS",kota:"Waru"},
+  {nama:"BENOWO",kota:"Surabaya"},
+
+  {nama:"GETSEMANI MALANG",kota:"Malang"},
+  {nama:"IMMANUEL MALANG",kota:"Malang"},
+  {nama:"MARGO MULYO",kota:"Batu, Malang"},
+  {nama:"SEJAHTERA MALANG",kota:"Malang"},
+  {nama:"AIR KEHIDUPAN",kota:"Blitar"},
+  {nama:"EBENHAEZER BLITAR",kota:"Blitar"},
+  {nama:"GAMALIEL",kota:"Madiun"},
+  {nama:"IMMANUEL BANGIL",kota:"Bangil"},
+  {nama:"IMMANUEL KEDIRI",kota:"Kediri"},
+  {nama:"IMMANUEL PROBOLINGGO",kota:"Probolinggo"},
+  {nama:"IMMANUEL MOJOKERTO",kota:"Mojokerto"},
+  {nama:"MARANATHA BOJONEGORO",kota:"Bojonegoro"},
+  {nama:"PELANGI KASIH",kota:"Lawang"},
+  {nama:"PNIEL PASURUAN",kota:"Pasuruan"},
+
+  {nama:"EFFATHA BANYUWANGI",kota:"Banyuwangi"},
+  {nama:"IMMANUEL BANYUWANGI",kota:"Banyuwangi"},
+  {nama:"GETSEMANI JEMBER",kota:"Jember"},
+  {nama:"IMMANUEL BONDOWOSO",kota:"Bondowoso"},
+  {nama:"PANCARAN KASIH LUMAJANG",kota:"Lumajang"},
+  {nama:"SURYA KASIH",kota:"Situbondo"},
+  {nama:"SYALOOM BANYUWANGI",kota:"Banyuwangi"}
+],
+  "12 - MUPEL JAKARTA PUSAT": [
+  {nama:"ANUGERAH",kota:"Jakarta Pusat"},
+  {nama:"BETHESDA",kota:"Jakarta Pusat"},
+  {nama:"BETLEHEM",kota:"Jakarta Pusat"},
+  {nama:"BUKIT ZAITUN",kota:"Jakarta Pusat"},
+  {nama:"EBENHAEZER",kota:"Jakarta Pusat"},
+  {nama:"GIDEON",kota:"Jakarta Pusat"},
+  {nama:"HOSIANA",kota:"Jakarta Pusat"},
+  {nama:"IMMANUEL",kota:"Jakarta Pusat"},
+  {nama:"MARANATHA",kota:"Jakarta Pusat"},
+  {nama:"PAULUS",kota:"Jakarta Pusat"},
+  {nama:"PETRUS",kota:"Jakarta Pusat"},
+  {nama:"PNIEL",kota:"Jakarta Pusat"}
+],
+
+"13 - MUPEL JAKARTA UTARA": [
+  {nama:"EIRENE",kota:"Jakarta Utara"},
+  {nama:"GETSEMANI",kota:"Jakarta Utara"},
+  {nama:"KELAPA GADING",kota:"Jakarta Utara"},
+  {nama:"PETRA",kota:"Jakarta Utara"},
+  {nama:"TUGU",kota:"Jakarta Utara"},
+  {nama:"MENABUR KASIH",kota:"Jakarta Utara"},
+  {nama:"BULAK TURI MARUNDA",kota:"Jakarta Utara"}
+],
+
+"14 - MUPEL JAKARTA SELATAN": [
+  {nama:"BUKIT MORIA",kota:"Jakarta Selatan"},
+  {nama:"EFFATHA",kota:"Jakarta Selatan"},
+  {nama:"EKKLESIA",kota:"Jakarta Selatan"},
+  {nama:"GIBEON",kota:"Jakarta Selatan"},
+  {nama:"KHARISMA",kota:"Jakarta Selatan"},
+  {nama:"MARKUS",kota:"Jakarta Selatan"},
+  {nama:"PASAR MINGGU",kota:"Jakarta Selatan"},
+  {nama:"SEJAHTERA",kota:"Jakarta Selatan"},
+  {nama:"SETIABUDI",kota:"Jakarta Selatan"},
+  {nama:"SUMBER KASIH",kota:"Jakarta Selatan"}
+],
+
+"15 - MUPEL JAKARTA BARAT": [
+  {nama:"SANGKAKALA",kota:"Jakarta Barat"},
+  {nama:"SHALOM",kota:"Jakarta Barat"},
+  {nama:"SILO",kota:"Jakarta Barat"},
+  {nama:"SILOAM",kota:"Jakarta Barat"},
+  {nama:"SION",kota:"Jakarta Barat"},
+  {nama:"YAHYA",kota:"Jakarta Barat"}
+],
+
+"16 - MUPEL JAKARTA TIMUR": [
+  {nama:"AGAPE",kota:"Jakarta Timur"},
+  {nama:"BETHANIA",kota:"Jakarta Timur"},
+  {nama:"HOREB",kota:"Jakarta Timur"},
+  {nama:"KHARIS",kota:"Jakarta Timur"},
+  {nama:"KOINONIA",kota:"Jakarta Timur"},
+  {nama:"MARTURIA",kota:"Jakarta Timur"},
+  {nama:"MENARA IMAN",kota:"Jakarta Timur"},
+  {nama:"NAZARETH",kota:"Jakarta Timur"},
+  {nama:"PELITA",kota:"Jakarta Timur"},
+  {nama:"PENABUR",kota:"Jakarta Timur"},
+  {nama:"SURYA KASIH",kota:"Jakarta Timur"},
+  {nama:"TAMAN HARAPAN",kota:"Jakarta Timur"},
+  {nama:"TORSINA",kota:"Jakarta Timur"},
+  {nama:"MARTIN LUTHER",kota:"Jakarta Timur"},
+  {nama:"CAWANG BARU",kota:"Jakarta Timur"}
+],
+
+  "17 - MUPEL BEKASI": [
+  {nama:"IMMANUEL",kota:"Bekasi"},
+  {nama:"GALILEA",kota:"Bekasi Selatan"},
+  {nama:"GLORIA",kota:"Bekasi Barat"},
+  {nama:"GRATIA",kota:"Bekasi Utara"},
+  {nama:"HARAPAN BARU",kota:"Bekasi Barat"},
+  {nama:"HARAPAN INDAH",kota:"Bekasi"},
+  {nama:"HARAPAN KASIH",kota:"Bekasi Utara"},
+  {nama:"ANUGERAH",kota:"Bekasi"},
+  {nama:"BAHTERA KASIH",kota:"Bekasi"},
+  {nama:"DIAN KASIH",kota:"Bekasi"},
+  {nama:"JATIPON",kota:"Bekasi"},
+  {nama:"MENARA KASIH",kota:"Bekasi"},
+  {nama:"PONDOK UNGU",kota:"Bekasi Barat"},
+  {nama:"PILAR ASIH",kota:"Bekasi Timur"},
+  {nama:"KARANG SATRIA",kota:"Bekasi"}
+],
+
+"18 - MUPEL BANTEN": [
+  {nama:"BAHTERA IMAN",kota:"Tangerang Selatan"},
+  {nama:"FILADELFIA",kota:"Bintaro"},
+  {nama:"KARUNIA",kota:"Tangerang Selatan"},
+  {nama:"KASIH KARUNIA",kota:"Tangerang"},
+  {nama:"KASIH SETIA",kota:"Tangerang"},
+  {nama:"KINASIH",kota:"Tangerang Selatan"},
+  {nama:"PATMOS",kota:"Tangerang"},
+  {nama:"SAMARIA",kota:"Tangerang"},
+  {nama:"YUDEA",kota:"Tangerang"},
+  {nama:"OBOR BANTEN",kota:"Tangerang Selatan"},
+  {nama:"ORA ET LABORA",kota:"Tangerang Selatan"},
+  {nama:"SINAR KASIH",kota:"Tangerang"},
+  {nama:"ABRAHAM SERANG",kota:"Serang"},
+  {nama:"JURANG MANGU",kota:"Tangerang Selatan"},
+  {nama:"BAJEM YUDEA SILOAM BINONG",kota:"Binong Tangerang"}
+],
+
+"19 - MUPEL LAMPUNG": [
+  {nama:"BETH TEFILAH",kota:"Pesawaran"},
+  {nama:"EFFATHA",kota:"Bandar Lampung"},
+  {nama:"IMMANUEL",kota:"Bandar Lampung"},
+  {nama:"MARTURIA",kota:"Bandar Lampung"},
+  {nama:"MARANATHA",kota:"Bandar Lampung"},
+  {nama:"PETRA",kota:"Kab. Lampung Utara"},
+  {nama:"SILO",kota:"Bandar Lampung"},
+  {nama:"TIBERIAS",kota:"Kab. Lampung Tengah"},
+  {nama:"ZEBAOTH",kota:"Kab. Lampung Tengah"},
+  {nama:"PANCARAN KASIH",kota:"Kab. Tanggamus"},
+  {nama:"KANAAN",kota:"Kab. Lampung Tengah"},
+  {nama:"IMMANUEL",kota:"Pesawaran"},
+  {nama:"MAKEDONIA",kota:"Dipasena Lampung Tengah"},
+  {nama:"BAJEM WONOBAKTI",kota:"Wonorejo Tulang Bawang"},
+  {nama:"BAJEM EMAUS",kota:"Gedung Harapan Way Kanan"},
+  {nama:"SYALOM",kota:"Kotabumi Lampung Utara"}
+],
+
+"20 - MUPEL SUMUT - ACEH": [
+  {nama:"IMMANUEL",kota:"Medan"},
+  {nama:"KASIH KARUNIA",kota:"Medan"},
+  {nama:"PNIEL KAMPUNG KOLAM",kota:"Kab. Deli Serdang"},
+  {nama:"FILADELFIA",kota:"Medan"},
+  {nama:"ANUGERAH",kota:"Kab. Langkat"},
+  {nama:"BANDA ACEH",kota:"Banda Aceh"},
+  {nama:"MARANATHA",kota:"Pematang Siantar"},
+  {nama:"YOPE",kota:"Medan"},
+  {nama:"SILOAM",kota:"Sibolga"},
+  {nama:"PATMOS",kota:"Aceh"},
+  {nama:"SYALOM BANGUN PURBA",kota:"Kab. Deli Serdang"},
+  {nama:"MITRA PARSINGGURAN NAULI",kota:"Kab. Humbang Hasundutan"},
+  {nama:"EFATA TANJUNG MORAWA",kota:"Kab. Deli Serdang"},
+  {nama:"BUKIT SION",kota:"Pir ADB Besitang Langkat"},
+  {nama:"MADUMA",kota:"Medan"},
+  {nama:"PAULUS",kota:"Binjai"},
+  {nama:"BAJEM TONDUHAN",kota:"Simalungun"}
+],
+
+  "21 - MUPEL SUMSEL": [
+  {nama:"IMMANUEL",kota:"Palembang"},
+  {nama:"PLAJU",kota:"Palembang"},
+  {nama:"PNIEL",kota:"Palembang"},
+  {nama:"EFRATA",kota:"Sumatera Selatan"},
+  {nama:"KARUNIA",kota:"Kab. Muara Enim"},
+  {nama:"SANGKAKALA",kota:"Kab. Ogan Komering Ilir"}
+],
+
+"22 - MUPEL JAMBI": [
+  {nama:"BUKIT KASIH",kota:"Sungai Penuh"},
+  {nama:"BUKIT DIAN KASIH",kota:"Kerinci"},
+  {nama:"ALFA OMEGA",kota:"Sungai Bahar"},
+  {nama:"MARTURIA",kota:"Jambi"},
+  {nama:"EKKLESIA",kota:"Jambi"},
+  {nama:"IMMANUEL",kota:"Tempino"}
+],
+
+"23 - MUPEL KEP. BABEL": [
+  {nama:"BETHESDA",kota:"Muntok"},
+  {nama:"IMMANUEL",kota:"Bangka"},
+  {nama:"ORA ET LABORA",kota:"Sungailiat"},
+  {nama:"SION",kota:"Bangka Tengah"},
+  {nama:"EFRATA",kota:"Bangka Selatan"},
+  {nama:"IMMANUEL",kota:"Belitung"},
+  {nama:"KARUNIA",kota:"Belitung Timur"},
+  {nama:"MARANATHA",kota:"Pangkalpinang"}
+],
+
+"24 - MUPEL KEPRI": [
+  {nama:"BAITANI",kota:"Batam"},
+  {nama:"IMMANUEL",kota:"Batam"},
+  {nama:"ZEBULON",kota:"Batam"},
+  {nama:"BAHTERA HAYAT",kota:"Batam"},
+  {nama:"EBEN HAEZER",kota:"Kepulauan Riau"},
+  {nama:"HOSANNA",kota:"Bintan"},
+  {nama:"ORA ET LABORA",kota:"Karimun"},
+  {nama:"BETHEL",kota:"Kepulauan Riau"},
+  {nama:"BUKIT KARMEL",kota:"Linggak"},
+  {nama:"IMMANUEL",kota:"Anambas"},
+  {nama:"BUKIT KASIH",kota:"Natuna"},
+  {nama:"BUKIT LAYANG",kota:"Batam"},
+  {nama:"EZRA",kota:"Batam"},
+  {nama:"GETSEMANI",kota:"Mengkait Anambas"},
+  {nama:"BAJEM PETRA",kota:"Batam"},
+  {nama:"BAJEM SOLA GRATIA",kota:"Kijang Bintan"}
+],
+
+"25 - MUPEL SARIBU": [
+  {nama:"GIBEON",kota:"Pekanbaru"},
+  {nama:"BUKIT ZAITUN",kota:"Bengkalis"},
+  {nama:"KASIH ABADI",kota:"Siak"},
+  {nama:"EFRATA",kota:"Padang"},
+  {nama:"EKKLESIA",kota:"Dumai"},
+  {nama:"EFRATA",kota:"Teluk Kuantan"},
+  {nama:"ANUGERAH",kota:"Pelalawan"},
+  {nama:"SILOAM",kota:"Pekanbaru"},
+  {nama:"MARTURIA",kota:"Kuantan Singingi"},
+  {nama:"EFFATA PASAMAN",kota:"Pasaman Barat"},
+  {nama:"SUMBER KASIH",kota:"Tapung"},
+  {nama:"BAJEM SURYA KASIH",kota:"Tembilahan"},
+  {nama:"BAJEM SION",kota:"Sei Rokan"},
+  {nama:"RAFFLESIA",kota:"Bengkulu"}
+],
+ 
+};
+
+// 🔥 NAVIGATION
+function showPage(pageNumber) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById("page" + pageNumber).classList.add("active");
+
+  // 🔵 PAGE 3
+  if (pageNumber === 3) {
+    const mupel = localStorage.getItem("mupel");
+
+    if (mupel) {
+      let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+      document.getElementById("infoMupel").textContent = namaMupel;
+    }
+  }
+
+  // 🔵 PAGE 4
+  if (pageNumber === 4) {
+    const mupel = localStorage.getItem("mupel");
+    const jemaat = localStorage.getItem("jemaat");
+
+    if (mupel) {
+      let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+      document.getElementById("infoMupel2").textContent =
+        "MUPEL " + namaMupel;
+    }
+
+    if (jemaat) {
+      document.getElementById("infoJemaat").textContent =
+        "PKB GPIB " + jemaat;
+    }
+  }
+
+  // 🔥 PAGE 5 (INI DIPISAH)
+  if (pageNumber === 5) {
+  const mupel = localStorage.getItem("mupel") || "-";
+  const jemaat = localStorage.getItem("jemaat") || "-";
+  const nama = localStorage.getItem("nama") || "-";
+  const wa = localStorage.getItem("wa") || "-";
+  const jabatan = localStorage.getItem("jabatan") || "-";
+  const peran = localStorage.getItem("peran") || "-";
+
+  let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
+
+  document.getElementById("reviewBox").innerHTML = `
+    <b>
+      Pengurus PKB GPIB ${jemaat}<br>
+      MUPEL ${namaMupel}<br><br>
+
+      Nama: ${nama} (${jabatan})<br>
+      WhatsApp: ${wa}<br><br>
+
+      Peran pada MUPEL: ${peran}
+    </b>
+  `;
+}
+}
+
+  
+// 🔥 AUTO NEXT MUPEL
+document.getElementById("mupel").addEventListener("change", function() {
+  const selected = this.value;
+
+  if (selected) {
+    localStorage.setItem("mupel", selected);
+
+    // isi jemaat
+    const jemaatSelect = document.getElementById("jemaat");
+    jemaatSelect.innerHTML = '<option value="">Pilih Jemaat</option>';
+
+    if (dataJemaat[selected]) {
+      dataJemaat[selected].forEach(j => {
+  const opt = document.createElement("option");
+
+  opt.value = j.nama + " " + j.kota;   // 🔥 tetap string (AMAN)
+  opt.textContent = j.nama + " " + j.kota;
+
+  jemaatSelect.appendChild(opt);
+});
+
+      
+    let namaMupel = selected.replace(/^\d+\s*-\s*/, "");
+
+document.getElementById("infoMupel").textContent =
+  namaMupel;
+    showPage(3);
+  }
+});
+
+// 🔥 AUTO NEXT JEMAAT
+document.getElementById("jemaat").addEventListener("change", function() {
+  const selected = this.value;
+
+  if (selected) {
+    localStorage.setItem("jemaat", selected);
+
+    showPage(4);
+  }
+});
+
+  function submitData() {
+  const nama = document.getElementById("nama").value.trim();
+  const wa = document.getElementById("wa").value.trim();
+
+  // 🔥 VALIDASI
+  if (!nama) {
+    alert("Nama wajib diisi");
+    return;
+  }
+
+  if (!wa || !/^[0-9]{10,15}$/.test(wa)) {
+    alert("Nomor WhatsApp tidak valid");
+    return;
+  }
+
+    
+  // 🔥 SIMPAN
+  localStorage.setItem("nama", nama);
+  localStorage.setItem("wa", wa);
+  localStorage.setItem("jabatan", document.getElementById("jabatan").value);
+  localStorage.setItem("peran", document.getElementById("peran").value);
+
+  // 🔥 NEXT PAGE (sementara)
+    showPage(5);
+
+}
+function submitFinal() {
+  const formData = new FormData();
+
+  formData.append("mupel", localStorage.getItem("mupel") || "");
+  formData.append("jemaat", localStorage.getItem("jemaat") || "");
+  formData.append("nama", localStorage.getItem("nama") || "");
+  formData.append("wa", localStorage.getItem("wa") || "");
+  formData.append("jabatan", localStorage.getItem("jabatan") || "");
+  formData.append("peran", localStorage.getItem("peran") || "");
+
+fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
+  method: "POST",
+  body: formData,
+  mode: "no-cors"
+})
+.then(() => {
+  showPage(6);
+  localStorage.clear();
+})
+.catch(() => {
+  alert("Gagal kirim data, coba lagi");
+});
+
+}
+function joinWA() {
+  window.open("https://chat.whatsapp.com/FjWaQPY95DFIbWuB4wwmAc", "_blank");
+}
+  
+</script>
+
+  
+</body>
+</html>
