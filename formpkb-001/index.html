@@ -233,12 +233,6 @@
 </div>
   
 <script>
-  $(document).ready(function() {
-  $('#jemaat').select2({
-    placeholder: "Pilih Jemaat",
-    width: '100%'
-  });
-});
 
 // 🔥 DATA SEDERHANA DULU (TEST)
 const dataJemaat = {
@@ -823,5 +817,12 @@ function joinWA() {
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  $(document).ready(function() {
+  $('#jemaat').select2({
+    placeholder: "Pilih Jemaat",
+    width: '100%'
+  });
+});
 </body>
 </html>
