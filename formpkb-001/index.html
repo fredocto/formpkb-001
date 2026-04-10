@@ -675,6 +675,13 @@ function showPage(pageNumber) {
       let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
       document.getElementById("infoMupel").textContent = namaMupel;
     }
+setTimeout(() => {
+  $('#jemaat').select2({
+    placeholder: "Pilih Jemaat",
+    width: '100%'
+  });
+}, 100);
+    
   }
 
   // 🔵 PAGE 4
@@ -815,13 +822,6 @@ function joinWA() {
 
 </script>
 
- <script>
-$(document).ready(function() {
-  $('#jemaat').select2({
-    placeholder: "Pilih Jemaat",
-    width: '100%'
-  });
-});
-</script>
+
 </body>
 </html>
