@@ -8,6 +8,8 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   
   <title>Form PKB GPIB</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -231,6 +233,12 @@
 </div>
   
 <script>
+  $(document).ready(function() {
+  $('#jemaat').select2({
+    placeholder: "Pilih Jemaat",
+    width: '100%'
+  });
+});
 
 // 🔥 DATA SEDERHANA DULU (TEST)
 const dataJemaat = {
@@ -810,9 +818,10 @@ fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y
 function joinWA() {
   window.open("https://chat.whatsapp.com/FjWaQPY95DFIbWuB4wwmAc", "_blank");
 }
-  
+
 </script>
 
-  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 </html>
