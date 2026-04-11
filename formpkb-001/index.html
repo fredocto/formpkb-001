@@ -91,8 +91,42 @@
   text-align: center;
   margin-bottom: 15px;
 }
+.field {
+  margin-bottom: 16px;
+}
 
+.field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
 
+.field input,
+.field select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin-bottom: 20px;
+}
+
+    
   </style>
 </head>
 
@@ -169,38 +203,40 @@
 <p class="subtitle" id="infoMupel2"></p>
 
   <div class="field">
-    <label>Nama Lengkap</label>
-    <input type="text" id="nama" placeholder="Masukkan nama lengkap">
-  </div>
+    <div class="field">
+  <label>Nama Lengkap</label>
+  <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+</div>
 
-  <div class="field">
-    <label>Nomor WhatsApp</label>
-    <input type="tel" id="wa" placeholder="08xxxxxxxxxx">
-  </div>
+<div class="field">
+  <label>Nomor WhatsApp</label>
+  <input type="tel" id="wa" placeholder="08xxxxxxxxxx">
+</div>
 
-  <div class="field">
-    <label>Jabatan</label>
-    <select id="jabatan">
-      <option value="">Pilih Jabatan</option>
-      <option>Ketua</option>
-      <option>Wakil Ketua</option>
-      <option>Sekretaris</option>
-      <option>Wakil Sekretaris</option>
-      <option>Bendahara</option>
-      <option>Wakil Bendahara</option>
-    </select>
-  </div>
+<div class="field">
+  <label>Jabatan</label>
+  <select id="jabatan">
+    <option value="">Pilih Jabatan</option>
+    <option>Ketua</option>
+    <option>Wakil Ketua</option>
+    <option>Sekretaris</option>
+    <option>Wakil Sekretaris</option>
+    <option>Bendahara</option>
+    <option>Wakil Bendahara</option>
+  </select>
+</div>
 
-  <div class="field">
-    <label>Peran MUPEL</label>
-    <select id="peran">
-      <option value="">Tidak Ada</option>
-      <option>KP3/KORWIL</option>
-      <option>Wakil KP3/KORWIL</option>
-      <option>Sekretaris</option>
-      <option>Bendahara</option>
-    </select>
-  </div>
+<div class="field">
+  <label>Peran MUPEL</label>
+  <select id="peran">
+    <option value="">Tidak Ada</option>
+    <option>KP3/KORWIL</option>
+    <option>Wakil KP3/KORWIL</option>
+    <option>Sekretaris</option>
+    <option>Bendahara</option>
+  </select>
+</div>
+   
 
   <button class="back" onclick="showPage(3)">Back</button>
   <button onclick="submitData()">Next</button>
