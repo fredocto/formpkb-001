@@ -98,7 +98,7 @@
 .field label {
   display: block;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   font-size: 14px;
 }
 
@@ -112,6 +112,11 @@
   box-sizing: border-box;
 }
 
+.field input,
+.field select {
+  margin-top: 0;
+}
+    
 .field input:focus,
 .field select:focus {
   outline: none;
@@ -739,7 +744,7 @@ function showPage(pageNumber) {
     if (mupel) {
       let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
       document.getElementById("infoMupel2").textContent =
-        "MUPEL " + namaMupel;
+        "namaMupel;
     }
 
     if (jemaat) {
