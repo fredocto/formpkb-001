@@ -8,10 +8,8 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
   
-  <title>Form PKB GPIB</title>
+  <title>Form KSB/KP3 PKB GPIB</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -108,9 +106,9 @@
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form PKB GPIB</h2>
+    <h2>Form KSB/KP3 PKB GPIB</h2>
     <p class="subtitle">
-      Khusus bagi KSB/KP3 yang belum bergabung dalam WAG
+      Khusus bagi KSB/KP3 yang belum bergabung dalam WAG "KSB/KP3 PKB GPIB Sinodal (Aktif)"
     </p>
 
     <button onclick="showPage(2)">Mulai</button>
@@ -675,13 +673,6 @@ function showPage(pageNumber) {
       let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
       document.getElementById("infoMupel").textContent = namaMupel;
     }
-setTimeout(() => {
-  $('#jemaat').select2({
-    placeholder: "Pilih Jemaat",
-    width: '100%'
-  });
-}, 100);
-    
   }
 
   // 🔵 PAGE 4
@@ -819,9 +810,9 @@ fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y
 function joinWA() {
   window.open("https://chat.whatsapp.com/FjWaQPY95DFIbWuB4wwmAc", "_blank");
 }
-
+  
 </script>
 
-
+  
 </body>
 </html>
