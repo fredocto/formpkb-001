@@ -12,50 +12,85 @@
   <title>Dewan Pelkat PKB GPIB</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  position: relative;
 
-    .container {
-      text-align: center;
-      background: white;
-      padding: 40px 30px;
-      border-radius: 14px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
-      max-width: 350px;
-      width: 90%;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 🔥 tidak center vertikal */
+  padding-top: 60px;       /* 🔥 kontrol jarak atas */
 
-    .logo img {
-      width: 450px;
-      margin-bottom: 20px;
-      opacity: 0.95;
-      transition: 0.2s;
-    }
+  height: 100vh;
+}
 
-    .logo img:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
+/* 🔥 BACKGROUND (GRAYSCALE HANYA DI SINI) */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
 
-    h1 {
-      font-size: 18px;
-      margin-bottom: 30px;
-      color: #333;
-    }
+  background:
+    linear-gradient(
+      rgba(40,40,40,0.75),
+      rgba(120,120,120,0.65)
+    ),
+    url('bg.jpg') no-repeat center center;
 
-    .btn {
+  background-size: cover;
+  filter: grayscale(100%);
+  z-index: -1;
+}
+
+/* 🔥 DECOR */
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* 🔥 CONTAINER */
+.container {
+  text-align: center;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+
+  max-width: 350px;
+  width: 90%;
+}
+
+/* 🔥 LOGO */
+.logo {
+  text-align: center;
+}
+
+.logo img {
+  width: 220px;      /* 🔥 adjust size */
+  max-width: 90%;
+  height: auto;
+
+  display: block;
+  margin: 0 auto 30px auto; /* 🔥 center + jarak bawah */
+  filter: none !important;  /* 🔥 paksa tidak grayscale */
+}
+
+/* 🔥 BUTTON */
+.btn {
   display: block;
   width: 100%;
   max-width: 260px;
-  margin: 0 auto;   /* 🔥 center */
+
+  margin: 30px auto 0 auto; /* 🔥 kasih jarak dari logo */
 
   padding: 14px;
   border-radius: 10px;
@@ -67,46 +102,16 @@
   font-weight: bold;
   font-size: 14px;
 
-  transition: 0.2s;
   text-align: center;
+  transition: 0.2s;
 }
+
 .btn:hover {
   background: #1b5e20;
   transform: scale(1.03);
 }
-
-    
-    body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-
-  background:
-    linear-gradient(
-      rgba(40,40,40,0.75),
-      rgba(120,120,120,0.65)
-    ),
-    url('bg.jpg') no-repeat center center;
-
-  background-size: cover;
-  filter: grayscale(100%);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-    body::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 60%);
-  pointer-events: none;
-}
-    .logo img {
-  filter: none;
-}
-  </style>
+</style>
+  
 </head>
 
 <body>
