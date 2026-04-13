@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+  <meta property="og:title" content="Dewan Pelkat PKB GPIB">
+<meta property="og:description" content="Form Pendataan KSB PKB & KP3 MUPEL GPIB">
+<meta property="og:image" content="https://pkb.gpib.cloud/og-dpkb.png">
+<meta property="og:url" content="https://pkb.gpib.cloud">
+<meta property="og:type" content="website">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <head>
   <title>Dewan Pelkat PKB GPIB</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,6 +68,33 @@
       background: #1b5e20;
       transform: scale(1.02);
     }
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  background:
+    linear-gradient(
+      rgba(40,40,40,0.75),
+      rgba(120,120,120,0.65)
+    ),
+    url('bg.jpg') no-repeat center center;
+
+  background-size: cover;
+  filter: grayscale(100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+    body::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 60%);
+  pointer-events: none;
+}
   </style>
 </head>
 
