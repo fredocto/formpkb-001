@@ -894,11 +894,23 @@ document.getElementById("jemaat").addEventListener("change", function() {
     return;
   }
 
-  if (selected) {
-    localStorage.setItem("jemaat", selected);
-    localStorage.setItem("revisi_jemaat", "");
-    showPage(4);
-  }
+if (selected === "OTHER") {
+  // 🔥 masuk ke halaman input manual
+  showPage(31);
+  return;
+}
+
+if (selected) {
+  localStorage.setItem("jemaat", selected);
+
+  // 🔥 hanya reset kalau bukan manual
+  localStorage.setItem("revisi_jemaat", "");
+
+  showPage(4);
+}
+
+
+  
 });
 
 
