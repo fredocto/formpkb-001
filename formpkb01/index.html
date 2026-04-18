@@ -788,7 +788,7 @@ if (jemaat === "INPUT MANUAL" && revisi) {
   }
 
   // 🔥 PAGE 5 (INI DIPISAH)
-  if (pageNumber === 5) {
+if (pageNumber === 5) {
   const mupel = localStorage.getItem("mupel") || "-";
   const jemaat = localStorage.getItem("jemaat") || "-";
   const nama = localStorage.getItem("nama") || "-";
@@ -798,54 +798,40 @@ if (jemaat === "INPUT MANUAL" && revisi) {
 
   let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
 
+  // 🔥 AMBIL DULU
+  const revisi = localStorage.getItem("revisi_jemaat") || "-";
+  const catatan = localStorage.getItem("catatan") || "-";
 
+  // 🔥 BARU PAKAI
+  let displayJemaat = jemaat;
 
-    const revisi = localStorage.getItem("revisi_jemaat") || "-";
-const catatan = localStorage.getItem("catatan") || "-";
+  if (jemaat === "INPUT MANUAL" && revisi !== "-") {
+    displayJemaat = revisi;
+  }
 
-    document.getElementById("reviewBox").innerHTML = `
-  <div class="review-box">
+  document.getElementById("reviewBox").innerHTML = `
+    <div class="review-box">
 
-    <div class="review-title">
-      Pengurus PKB GPIB ${displayJemaat}
+      <div class="review-title">
+        Pengurus PKB GPIB ${displayJemaat}
+      </div>
+
+      <div class="review-item">
+        MUPEL ${namaMupel}
+      </div>
+
+      <hr style="margin:10px 0;">
+
+      <div class="review-item"><b>Nama:</b> ${nama}</div>
+      <div class="review-item"><b>Jabatan:</b> ${jabatan}</div>
+      <div class="review-item"><b>WhatsApp:</b> ${wa}</div>
+      <div class="review-item"><b>Peran MUPEL:</b> ${peran}</div>
+      <div class="review-item"><b>Revisi Jemaat:</b> ${revisi}</div>
+      <div class="review-item"><b>Catatan:</b> ${catatan}</div>
+
     </div>
-
-    <div class="review-item">
-      MUPEL ${namaMupel}
-    </div>
-
-    <hr style="margin:10px 0;">
-
-    <div class="review-item">
-      <b>Nama:</b> ${nama}
-    </div>
-
-    <div class="review-item">
-      <b>Jabatan:</b> ${jabatan}
-    </div>
-
-    <div class="review-item">
-      <b>WhatsApp:</b> ${wa}
-    </div>
-
-    <div class="review-item">
-      <b>Peran MUPEL:</b> ${peran}
-    </div>
-<div class="review-item">
-      <b>Revisi Jemaat:</b> ${revisi}
-    </div>
-
-    <div class="review-item">
-      <b>Catatan:</b> ${catatan}
-    </div>
-
-  </div>
-
-`;
-    
+  `;
 }
-}
-
   
 // 🔥 AUTO NEXT MUPEL
 document.getElementById("mupel").addEventListener("change", function() {
