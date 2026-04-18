@@ -798,15 +798,6 @@ if (jemaat === "INPUT MANUAL" && revisi) {
 
   let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
 
-    const jemaat = localStorage.getItem("jemaat") || "-";
-const revisi = localStorage.getItem("revisi_jemaat") || "-";
-
-let displayJemaat = jemaat;
-
-if (jemaat === "INPUT MANUAL" && revisi !== "-") {
-  displayJemaat = revisi;
-}
-
 
 
     const revisi = localStorage.getItem("revisi_jemaat") || "-";
@@ -850,7 +841,6 @@ const catatan = localStorage.getItem("catatan") || "-";
 
   </div>
 
-  </div>
 `;
     
 }
