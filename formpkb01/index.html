@@ -798,6 +798,14 @@ if (jemaat === "INPUT MANUAL" && revisi) {
 
   let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
 
+    const jemaat = localStorage.getItem("jemaat") || "-";
+const revisi = localStorage.getItem("revisi_jemaat") || "-";
+
+let displayJemaat = jemaat;
+
+if (jemaat === "INPUT MANUAL" && revisi !== "-") {
+  displayJemaat = revisi;
+}
 
 
 
@@ -808,7 +816,7 @@ const catatan = localStorage.getItem("catatan") || "-";
   <div class="review-box">
 
     <div class="review-title">
-      Pengurus PKB GPIB ${jemaat}
+      Pengurus PKB GPIB ${displayJemaat}
     </div>
 
     <div class="review-item">
