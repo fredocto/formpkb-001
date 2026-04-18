@@ -206,6 +206,8 @@ h2 {
     </select>
   </div>
 
+
+  
   <!-- 🔵 PAGE 3 -->
 <div id="page3" class="page">
   <h2>Pilih Jemaat</h2>
@@ -277,7 +279,11 @@ h2 {
     <option>Wakil Bendahara KP3/KORWIL</option>
   </select>
 </div>
-   
+
+  <div class="field">
+  <label>Catatan / Usul / Pertanyaan</label>
+  <input type="text" id="catatan" placeholder="Opsional">
+</div>
 
   <button class="back" onclick="showPage(3)">Back</button>
   <button onclick="submitData()">Next</button>
@@ -758,7 +764,16 @@ function showPage(pageNumber) {
   // 🔵 PAGE 4
   if (pageNumber === 4) {
     const mupel = localStorage.getItem("mupel");
+
     const jemaat = localStorage.getItem("jemaat");
+const revisi = localStorage.getItem("revisi_jemaat");
+
+let displayJemaat = jemaat;
+
+if (jemaat === "INPUT MANUAL" && revisi) {
+  displayJemaat = revisi;
+}
+    
 
     if (mupel) {
       let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
@@ -768,7 +783,7 @@ function showPage(pageNumber) {
 
     if (jemaat) {
       document.getElementById("infoJemaat").textContent =
-        "PKB GPIB " + jemaat;
+        "PKB GPIB " + displayJemaat;
     }
   }
 
@@ -826,12 +841,6 @@ const catatan = localStorage.getItem("catatan") || "-";
     </div>
 
   </div>
-
-
-<div class="field">
-  <label>Catatan / Usul / Pertanyaan</label>
-  <input type="text" id="catatan" placeholder="Opsional">
-</div>
 
   </div>
 `;
@@ -908,18 +917,6 @@ document.getElementById("jemaat").addEventListener("change", function() {
   }
 });
 
-  ${revisi !== "-" ? `
-  <div class="review-item">
-    <b>Revisi Jemaat:</b> ${revisi}
-  </div>
-` : ""}
-
-${catatan !== "-" ? `
-  <div class="review-item">
-    <b>Catatan:</b> ${catatan}
-  </div>
-` : ""}
-  
 
   function submitData() {
   const nama = document.getElementById("nama").value.trim();
