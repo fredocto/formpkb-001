@@ -218,6 +218,22 @@ h2 {
   <button class="back" onclick="showPage(2)">Back</button>
 </div>
 
+<!-- 🔵 PAGE 3B (REVISI JEMAAT) -->
+<div id="page31" class="page">
+  <h2>Revisi Jemaat</h2>
+
+  <div class="field">
+    <label>Ketik Nama Jemaat atau perbaikan Nama Jemaat / Kota</label>
+    <input type="text" id="revisi_jemaat" placeholder="Contoh: GPIB ANUGERAH Depok">
+  </div>
+
+  <button class="back" onclick="showPage(3)">Back</button>
+  <button onclick="submitRevisiJemaat()">Next</button>
+</div>
+
+
+
+  
 <div id="page4" class="page">
   
   <h2>Data Diri Pengurus</h2>
@@ -274,6 +290,8 @@ h2 {
 
   <div id="reviewBox" style="text-align:left; font-size:14px; line-height:1.6;"></div>
 
+
+    
   <button class="back" onclick="showPage(4)">Back</button>
   <button onclick="submitFinal()">Submit</button>
 </div>
@@ -283,7 +301,7 @@ h2 {
 
   <p class="subtitle">
     Data Anda telah berhasil dikirim.<br>
-    Silahkan bergabung ke WAG resmi KSB/KP3 PKB GPIB Sinodal (Aktif)
+    Silahkan bergabung ke WAG resmi KSB dan KP3 PKB GPIB Sinodal (Aktif)
   </p>
 
   <button onclick="joinWA()" style="font-size:18px; padding:16px;">
@@ -293,7 +311,7 @@ h2 {
   
 <script>
 
-// 🔥 DATA SEDERHANA DULU (TEST)
+// 🔥 DATA JEMAAT 
 const dataJemaat = {
   "01 - MUPEL SULSELBARA": [
   "BETHANIA Makassar",
@@ -736,6 +754,7 @@ function showPage(pageNumber) {
     }
   }
 
+  
   // 🔵 PAGE 4
   if (pageNumber === 4) {
     const mupel = localStorage.getItem("mupel");
@@ -764,7 +783,13 @@ function showPage(pageNumber) {
 
   let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
 
-document.getElementById("reviewBox").innerHTML = `
+
+
+
+    const revisi = localStorage.getItem("revisi_jemaat") || "-";
+const catatan = localStorage.getItem("catatan") || "-";
+
+    document.getElementById("reviewBox").innerHTML = `
   <div class="review-box">
 
     <div class="review-title">
@@ -792,6 +817,21 @@ document.getElementById("reviewBox").innerHTML = `
     <div class="review-item">
       <b>Peran MUPEL:</b> ${peran}
     </div>
+<div class="review-item">
+      <b>Revisi Jemaat:</b> ${revisi}
+    </div>
+
+    <div class="review-item">
+      <b>Catatan:</b> ${catatan}
+    </div>
+
+  </div>
+
+
+<div class="field">
+  <label>Catatan / Usul / Pertanyaan</label>
+  <input type="text" id="catatan" placeholder="Opsional">
+</div>
 
   </div>
 `;
@@ -812,12 +852,20 @@ document.getElementById("mupel").addEventListener("change", function() {
     jemaatSelect.innerHTML = '<option value="">Pilih Jemaat</option>';
 
     if (dataJemaat[selected]) {
+      
       dataJemaat[selected].forEach(j => {
-        const opt = document.createElement("option");
-        opt.value = j;
-        opt.textContent = j;
-        jemaatSelect.appendChild(opt);
-      });
+  const opt = document.createElement("option");
+  opt.value = j;
+  opt.textContent = j;
+  jemaatSelect.appendChild(opt);
+});
+
+// 🔥 TAMBAHAN OPSI KHUSUS
+const optOther = document.createElement("option");
+optOther.value = "OTHER";
+optOther.textContent = ">>> Jemaat tidak ditemukan / salah penulisan";
+jemaatSelect.appendChild(optOther);
+      
     }
 
     let namaMupel = selected.replace(/^\d+\s*-\s*/, "");
@@ -828,16 +876,50 @@ document.getElementById("infoMupel").textContent =
   }
 });
 
+function submitRevisiJemaat() {
+  const revisi = document.getElementById("revisi_jemaat").value.trim();
+
+  if (!revisi) {
+    alert("Silakan isi nama jemaat terlebih dahulu");
+    return;
+  }
+
+  localStorage.setItem("jemaat", "INPUT MANUAL");
+  localStorage.setItem("revisi_jemaat", revisi);
+
+  showPage(4);
+}
+
+  
 // 🔥 AUTO NEXT JEMAAT
+
 document.getElementById("jemaat").addEventListener("change", function() {
   const selected = this.value;
 
+  if (selected === "OTHER") {
+    showPage(31); // 🔥 Page baru
+    return;
+  }
+
   if (selected) {
     localStorage.setItem("jemaat", selected);
-
+    localStorage.setItem("revisi_jemaat", "");
     showPage(4);
   }
 });
+
+  ${revisi !== "-" ? `
+  <div class="review-item">
+    <b>Revisi Jemaat:</b> ${revisi}
+  </div>
+` : ""}
+
+${catatan !== "-" ? `
+  <div class="review-item">
+    <b>Catatan:</b> ${catatan}
+  </div>
+` : ""}
+  
 
   function submitData() {
   const nama = document.getElementById("nama").value.trim();
@@ -860,7 +942,10 @@ document.getElementById("jemaat").addEventListener("change", function() {
   localStorage.setItem("wa", wa);
   localStorage.setItem("jabatan", document.getElementById("jabatan").value);
   localStorage.setItem("peran", document.getElementById("peran").value);
+localStorage.setItem("catatan", document.getElementById("catatan").value);
 
+
+    
   // 🔥 NEXT PAGE (sementara)
     showPage(5);
 
@@ -874,6 +959,9 @@ function submitFinal() {
   formData.append("wa", localStorage.getItem("wa") || "");
   formData.append("jabatan", localStorage.getItem("jabatan") || "");
   formData.append("peran", localStorage.getItem("peran") || "");
+formData.append("revisi_jemaat", localStorage.getItem("revisi_jemaat") || "");
+formData.append("catatan", localStorage.getItem("catatan") || "");
+  
 
 fetch("https://script.google.com/macros/s/AKfycbwuicLZuRDPf2yrR7x-N-sO9mYXy0Rl3Y-ROerqw-SspRc8370H_RtVb4vCy-xavaQnzw/exec", {
   method: "POST",
