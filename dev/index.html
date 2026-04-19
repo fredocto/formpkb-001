@@ -163,7 +163,7 @@ h2 {
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (DEV-TEST03)</h2>
+    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (DEV-TEST04)</h2>
     <p class="subtitle">
       Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
     </p>
@@ -956,21 +956,18 @@ console.log("KIRIM:", {
   nama: localStorage.getItem("nama")
 });
   
-fetch("https://script.google.com/macros/s/AKfycbzICiINxNThQEzEe5f0YGjQyiT--P9ePsLJM1_imekOFz6RfFJs2uh-PoEhKzxFfYf_/exec", {
+fetch("https://script.google.com/macros/s/AKfycbwyaQoUZOsLK__W8dPJxO_XIakD8v4Qxl1vMNw-ptkOPu8V6vop-2-_5M1cuN9E7A4ayA/exec", {
   method: "POST",
-  body: formData
+  body: formData,
+  mode: "no-cors"
 })
-.then(res => res.text())
-.then(data => {
-  console.log("RESPONSE:", data);
+.then(() => {
   showPage(6);
   localStorage.clear();
 })
-.catch(err => {
-  console.error("ERROR:", err);
+.catch(() => {
   alert("Gagal kirim data");
 });
-
  
 }
 function joinWA() {
