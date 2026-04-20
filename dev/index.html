@@ -77,6 +77,7 @@
       color: white;
       border: none;
       cursor: pointer;
+      letter-spacing: 0.3px;
     }
 
     button:hover {
@@ -210,6 +211,50 @@ h2 {
   border-top: 1px solid #dcdcdc;
   margin: 10px 0;
 }
+.spacer {
+  height: 60px;
+}
+
+
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* 🔥 PRIMARY (Submit / Mulai) */
+.btn-primary {
+  background: #2e7d32;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(46,125,50,0.25);
+}
+
+.btn-primary:hover {
+  background: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* 🔘 BACK BUTTON */
+.back {
+  background: #e0e0e0;
+  color: #333;
+  font-weight: 500;
+}
+
+.back:hover {
+  background: #d5d5d5;
+}
+    
     
   </style>
 </head>
@@ -223,14 +268,27 @@ h2 {
 
   
   <!-- 🔵 PAGE 1 -->
-  <div id="page1" class="page active">
-    <h2>Form Pengurus (KSB) Pelkat PKB GPIB dan/atau KP3/KORWIL PKB MUPEL (v1.1-TEST08)</h2>
-    <p class="subtitle">
-      Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
-    </p>
+ <div id="page1" class="page active">
 
-    <button onclick="showPage(2)">Mulai</button>
-  </div>
+  <h2 class="title-main">
+    Form Pengurus Pelkat PKB GPIB<br>
+    Khusus KSB (Ketua, Sekretaris dan Bendahara)
+  </h2>
+
+  <p class="subtitle">
+    Bagi KSB PKB atau KP3/KORWIL PKB MUPEL GPIB yang belum bergabung dalam WAG
+    "KSB & KP3 PKB GPIB Sinodal (Aktif)"
+  </p>
+
+  <div class="spacer"></div>
+
+  <button class="btn-primary" onclick="showPage(2)">
+    Mulai
+  </button>
+
+</div>
+  
+  
 
 <!-- 🔵 PAGE 2 -->
   <div id="page2" class="page">
@@ -295,6 +353,8 @@ h2 {
   </div>
 
   <button class="back" onclick="showPage(3)">Back</button>
+
+  
   <button onclick="submitRevisiJemaat()">Next</button>
 </div>
 
@@ -367,7 +427,9 @@ h2 {
 
     
   <button class="back" onclick="showPage(4)">Back</button>
-  <button onclick="submitFinal()">Submit</button>
+
+    <button class="btn-primary" onclick="submitFinal()">Submit</button>
+ 
 </div>
 
 <div id="page6" class="page">
