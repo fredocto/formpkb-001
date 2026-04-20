@@ -140,11 +140,13 @@ h2 {
   line-height: 1.6;
   border: 1px solid #e0e0e0;
 }
-
 .review-title {
   font-weight: bold;
+  line-height: 1.4;
   margin-bottom: 10px;
+  font-size: 15px;
 }
+    
 
 .review-item {
   margin-bottom: 6px;
@@ -209,7 +211,7 @@ h2 {
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (v1.1-TEST04)</h2>
+    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (v1.1-TEST05)</h2>
     <p class="subtitle">
       Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
     </p>
@@ -866,10 +868,11 @@ if (pageNumber === 5) {
   document.getElementById("reviewBox").innerHTML = `
     <div class="review-box">
 
-      <div class="review-title">
-        Pengurus PKB GPIB ${displayJemaat}
-      </div>
-
+<div class="review-title">
+  Pengurus PKB<br>
+  GPIB Jemaat ${displayJemaat}
+</div>
+     
       <div class="review-item">
        ${namaMupel}
       </div>
