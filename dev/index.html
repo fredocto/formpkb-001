@@ -143,7 +143,7 @@ h2 {
 .review-title {
   font-weight: bold;
   line-height: 1.4;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   font-size: 15px;
 }
     
@@ -199,13 +199,17 @@ h2 {
 }
 
 .review-item.no-gap {
-  margin-bottom: 0;
+  margin-bottom: 6;
 }
 
 .review-item.spaced {
   margin-top: 12px;
 }
-
+.divider {
+  border: none;
+  border-top: 1px solid #dcdcdc;
+  margin: 10px 0;
+}
     
   </style>
 </head>
@@ -220,7 +224,7 @@ h2 {
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (v1.1-TEST07)</h2>
+    <h2>Form Pengurus PKB GPIB (Ketua, Sekretaris, Bendahara) dan KP3/KORWIL PKB MUPEL GPIB (v1.1-TEST08)</h2>
     <p class="subtitle">
       Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
     </p>
@@ -339,7 +343,7 @@ h2 {
     <option>Wakil KP3/KORWIL</option>
     <option>Sekretaris KP3/KORWIL</option>
     <option>Wakil Sekretaris KP3/KORWIL</option>
-    <option>Bendahara</option>
+    <option>Bendahara KP3/KORWIL</option>
     <option>Wakil Bendahara KP3/KORWIL</option>
   </select>
 </div>
@@ -882,7 +886,7 @@ if (pageNumber === 5) {
   GPIB Jemaat ${displayJemaat}
 </div>
      
-      <div class="review-item">
+      <div class="review-item no-gap">
        ${namaMupel}
       </div>
 
@@ -891,10 +895,11 @@ if (pageNumber === 5) {
       <div class="review-item"><b>Nama:</b> ${nama}</div>
       <div class="review-item"><b>Jabatan:</b> ${jabatan}</div>
       <div class="review-item"><b>WhatsApp:</b> ${wa}</div>
+      <hr class="divider">
 <div class="review-item spaced">
   <b>Peran di PKB MUPEL:</b> ${peran}
 </div>
-
+<hr class="divider">
 <div class="review-item spaced">
   <b>Catatan:</b> ${catatan}
 </div>
