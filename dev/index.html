@@ -149,17 +149,21 @@ h2 {
 .review-item {
   margin-bottom: 6px;
 }
+
 .info-box {
   background: #f1f5f2;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 18px;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 12px 0 18px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .info-main {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
   color: #1b5e20;
+  line-height: 1.4;
 }
 
 .info-sub {
@@ -204,7 +208,7 @@ h2 {
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (DEV-TEST11)</h2>
+    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (v1.1-TEST01)</h2>
     <p class="subtitle">
       Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
     </p>
@@ -252,7 +256,11 @@ h2 {
   <!-- 🔵 PAGE 3 -->
 <div id="page3" class="page">
   <h2>Pilih Jemaat</h2>
-  <p id="infoMupel" class="subtitle"></p>
+
+  <div class="info-box">
+  <div id="infoMupel" class="info-main"></div>
+</div>
+  
 
   <select id="jemaat">
     <option value="">Pilih Jemaat</option>
@@ -800,7 +808,8 @@ function showPage(pageNumber) {
 
     if (mupel) {
       let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
-      document.getElementById("infoMupel").textContent = namaMupel;
+      document.getElementById("infoMupel").textContent =
+  "MUPEL " + namaMupel;
     }
   }
 
