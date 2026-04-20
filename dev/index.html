@@ -172,6 +172,19 @@ h2 {
   resize: vertical;
   min-height: 80px;
 }
+
+.title-main {
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.title-sub {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
     
   </style>
 </head>
@@ -257,11 +270,9 @@ h2 {
 </div>
 
 
-
+<h2 class="title-main">Input Data Diri</h2>
+<div class="title-sub">Pengurus PKB</div>
   
-<div id="page4" class="page">
-  
-  <h2>Data Diri Pengurus</h2>
 
 <div class="info-box">
   <div id="infoJemaat" class="info-main"></div>
@@ -807,7 +818,7 @@ if (jemaat === "INPUT MANUAL" && revisi) {
 
     if (jemaat) {
       document.getElementById("infoJemaat").textContent =
-        "PKB GPIB Jemaat " + displayJemaat;
+        "GPIB Jemaat " + displayJemaat;
     }
   }
 
