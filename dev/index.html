@@ -185,6 +185,10 @@ h2 {
   color: #2e7d32;
   margin-bottom: 15px;
 }
+
+    .title-main {
+  margin-top: 5px;
+}
     
   </style>
 </head>
@@ -199,7 +203,7 @@ h2 {
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (DEV-TEST08)</h2>
+    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (DEV-TEST09)</h2>
     <p class="subtitle">
       Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
     </p>
@@ -269,6 +273,9 @@ h2 {
   <button onclick="submitRevisiJemaat()">Next</button>
 </div>
 
+  <!-- 🔵 PAGE 4 -->
+<div id="page4" class="page">
+  
 
 <h2 class="title-main">Input Data Diri</h2>
 <div class="title-sub">Pengurus PKB</div>
@@ -795,7 +802,6 @@ function showPage(pageNumber) {
     }
   }
 
-  
   // 🔵 PAGE 4
   if (pageNumber === 4) {
     const mupel = localStorage.getItem("mupel");
@@ -821,6 +827,7 @@ if (jemaat === "INPUT MANUAL" && revisi) {
         "GPIB Jemaat " + displayJemaat;
     }
   }
+ 
 
   // 🔥 PAGE 5 (INI DIPISAH)
 if (pageNumber === 5) {
