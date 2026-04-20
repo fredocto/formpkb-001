@@ -168,7 +168,7 @@ h2 {
 
 .info-sub {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
   color: #2e7d32;
   margin-top: 2px;
 }
@@ -185,7 +185,7 @@ h2 {
 
 .title-sub {
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #2e7d32;
   margin-bottom: 15px;
@@ -208,7 +208,7 @@ h2 {
   
   <!-- 🔵 PAGE 1 -->
   <div id="page1" class="page active">
-    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (v1.1-TEST01)</h2>
+    <h2>Form KSB PKB dan KP3 MUPEL PKB GPIB (v1.1-TEST02)</h2>
     <p class="subtitle">
       Khusus bagi KSB PKB atau KP3 PKB MUPEL GPIB yang belum bergabung dalam WAG "KSB & KP3 PKB GPIB Sinodal (Aktif)"
     </p>
@@ -809,7 +809,7 @@ function showPage(pageNumber) {
     if (mupel) {
       let namaMupel = mupel.replace(/^\d+\s*-\s*/, "");
       document.getElementById("infoMupel").textContent =
-  "MUPEL " + namaMupel;
+  namaMupel;
     }
   }
 
